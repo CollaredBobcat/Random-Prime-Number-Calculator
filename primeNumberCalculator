@@ -1,0 +1,65 @@
+#include <iostream>
+#include <cmath>
+#include <cstdlib>
+#include <ctime>
+
+using namespace std;
+
+int main()
+{
+        bool flag = true;
+    srand(time(NULL));
+    int number;
+    int i = 1, j, count = 0, total_count = 0;
+
+    while (i <= 10)
+    {
+        number = rand() % 90000 + 10000;
+        while (number % 2 == 0)
+        {
+            number = rand() % 90000 + 10000;
+        }
+        flag = true;
+        count = 0;
+
+        if (number <= 1)
+        {
+            flag = false;
+        }
+        else if (number == 2)
+        {
+            flag = true;
+        }
+        else
+        {
+
+            for (j = 2; j <= (int)sqrt(number); j++)
+            {
+                count++;
+                if (number % j == 0)
+                {
+                    flag = false;
+                    break;
+                }
+            }
+        }
+        count += 2;
+        total_count += count;
+
+
+        if (flag)
+        {
+            cout << i << ". " << number << " : " << " PRIME" << "  |  ";
+            cout << count << " calculations performed." << endl;
+        }
+        else
+        {
+            cout << i << ". " << number << " : " << " NOT PRIME" << "  |  ";
+            cout << count << " calculations performed." << endl;
+        }
+
+
+        i++;
+    }
+    cout << "Total calculations performed: " << total_count;
+}
